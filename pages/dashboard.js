@@ -4,5 +4,5 @@ export default function Dashboard() {
 
 Dashboard.auth = {
   role: "admin",
-  unauthorized: "/login", // redirect to this url
+  unauthorized: "/userdashboard"
 };

@@ -1,25 +1,32 @@
 import "../styles/globals.css";
-import { SessionProvider, useSession, signIn } from "next-auth/react";
-import React, { useEffect } from "react";
+import React from "react";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  console.log(Component.auth.role);
+let role = "user"
+
+function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider session={session}>
-      {Component.auth.role === "admin" ? (
+    <>
+      {Component.auth && Component.auth.role === "admin" ? (
         <Admin>
           <Component {...pageProps} />
         </Admin>
       ) : (
-        <Component {...pageProps} />
+        <User>
+          <Component {...pageProps} />
+        </User>
       )}
-    </SessionProvider>
+    </>
   );
 }
 
 function Admin({ children }) {
-  let role = "admin";
   if (role === "admin") {
+    return children;
+  }
+}
+
+function User({ children }) {
+  if (role === "user") {
     return children;
   }
 }
