@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import React from "react";
 
-let role = "user"
+let role = "admin"
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -22,6 +22,9 @@ function MyApp({ Component, pageProps }) {
 function Admin({ children }) {
   if (role === "admin") {
     return children;
+  }
+  else {
+     return "404"
   }
 }
 
